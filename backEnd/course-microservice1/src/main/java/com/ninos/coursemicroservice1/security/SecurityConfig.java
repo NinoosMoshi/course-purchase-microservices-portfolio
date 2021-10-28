@@ -19,15 +19,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${service.security.secure-key-password}")
     private String SECURE_KEY_PASSWORD;
 
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
 
         auth.inMemoryAuthentication()
                 .passwordEncoder(encoder)
-                .withUser("SECURE_KEY_USERNAME")
-                .password(encoder.encode("SECURE_KEY_PASSWORD"))
+                .withUser(SECURE_KEY_USERNAME)
+                .password(encoder.encode(SECURE_KEY_PASSWORD))
                 .roles("USER");
     }
 

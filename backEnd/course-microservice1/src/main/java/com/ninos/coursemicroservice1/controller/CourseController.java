@@ -14,7 +14,6 @@ import static org.springframework.http.HttpStatus.OK;
 @RestController
 @RequestMapping("/api/course")
 public class CourseController {
-
     private CourseService courseService;
 
     @Autowired
@@ -22,11 +21,9 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-
     @PostMapping  // http://localhost:3333/api/course
     public ResponseEntity<?> saveCourse(@RequestBody Course course){
-       Course course1= courseService.saveCourse(course);
-        return new ResponseEntity<>(course1, CREATED);
+        return new ResponseEntity<>(courseService.saveCourse(course), CREATED);
     }
 
     @DeleteMapping("{courseId}") // http://localhost:3333/api/course/courseId

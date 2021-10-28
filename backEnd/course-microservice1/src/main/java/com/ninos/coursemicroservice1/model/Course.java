@@ -1,19 +1,16 @@
 package com.ninos.coursemicroservice1.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "course")
-public class Course {
-
+public class Course
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,10 +24,7 @@ public class Course {
     @Column(name = "price", nullable = false)
     private Double price;
 
+    @CreationTimestamp
     @Column(name = "create_time", nullable = false)
     private LocalDateTime createTime;
-
-
-
-
 }
