@@ -19,7 +19,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("update User set role = :role where username = :username")
     void updateUserRole(@Param ("username") String username, @Param("role") Role role);
 
-
+//    Native-Query with JPA Query annotation:
+//    @Modifying
+//    @Query(value = "update User u set u.role = :role where u.username = :username", nativeQuery=true)
+//    void updateUserRole(@Param("username") String username, @Param("role") Role role);
 
 
 }
