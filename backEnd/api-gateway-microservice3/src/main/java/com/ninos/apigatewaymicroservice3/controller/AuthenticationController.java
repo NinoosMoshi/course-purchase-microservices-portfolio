@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("api/authentication")
+@RequestMapping("/api/authentication")
 public class AuthenticationController {
 
     private AuthenticationService authenticationService;

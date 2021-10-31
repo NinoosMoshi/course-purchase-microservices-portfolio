@@ -13,8 +13,4 @@ public class ApiGatewayMicroservice3Application {
 		SpringApplication.run(ApiGatewayMicroservice3Application.class, args);
 	}
 
-	@Bean
-	public PasswordEncoder passwordEncoder(){
-		return new BCryptPasswordEncoder();
-	}
 }
