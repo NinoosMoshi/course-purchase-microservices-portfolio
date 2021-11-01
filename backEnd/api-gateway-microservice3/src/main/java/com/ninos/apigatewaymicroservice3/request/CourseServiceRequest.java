@@ -18,6 +18,6 @@ public interface CourseServiceRequest
     @DeleteMapping("{courseId}")  // http://localhost:3333/api/course/{courseId}
     void deleteCourse(@PathVariable("courseId") Long courseId);
 
-    @GetMapping   // api/course
+    @GetMapping   // http://localhost:3333/api/course
     List<Object> getAllCourses();
 }
