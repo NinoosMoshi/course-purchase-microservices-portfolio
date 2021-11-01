@@ -8,15 +8,14 @@ import java.util.List;
 
 @FeignClient(value = "course-service"   //Name of course-service application
             , path = "/api/course"          //Pre-path for course-service
-            ,url = "${course.service.url}"  // in gateway application.properties
-            ,configuration = FeignConfiguration.class
-)
+            ,url = "${course.service.url}"  // in gateway application.properties  http://localhost:3333
+            ,configuration = FeignConfiguration.class)
 public interface CourseServiceRequest
 {
-    @PostMapping  // api/course
+    @PostMapping  // http://localhost:3333/api/course
     Object saveCourse(@RequestBody Object requestBody);
 
-    @DeleteMapping("{courseId}")  // api/course/{courseId}
+    @DeleteMapping("{courseId}")  // http://localhost:3333/api/course/{courseId}
     void deleteCourse(@PathVariable("courseId") Long courseId);
 
     @GetMapping   // api/course
