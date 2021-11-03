@@ -10,7 +10,7 @@ import java.util.List;
 
 @FeignClient(value = "purchase-service"   //Name of purchase microservice in application.properties
         , path = "/api/purchase"          //Pre-path for purchase-service
-        ,url = "${purchase.service.url}"  // in gateway application.properties  http://localhost:4444
+        //,url = "${purchase.service.url}"  // in gateway application.properties  http://localhost:4444
         ,configuration = FeignConfiguration.class)
 public interface PurchaseServiceRequest {
 
