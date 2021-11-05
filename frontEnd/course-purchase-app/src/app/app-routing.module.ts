@@ -9,14 +9,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path:'', redirectTo: 'home', pathMatch: 'full'},
   {path:'home', component:HomeComponent},
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
   {path:'profile', component:ProfileComponent},
   {path:'admin', component:AdminComponent},
   {path:'404', component:NotFoundComponent},
-  {path:'401', component:UnauthorizedComponent}
+  {path:'401', component:UnauthorizedComponent},
+  {path:'', redirectTo: '/home', pathMatch: 'full'},
+  {path:'**', redirectTo:'/404',pathMatch:'full'}
 ];
 
 @NgModule({
