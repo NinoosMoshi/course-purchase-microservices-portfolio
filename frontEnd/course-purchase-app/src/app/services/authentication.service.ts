@@ -45,7 +45,8 @@ export class AuthenticationService {
   }
 
   register(user: User): Observable<any> {
-    return this.http.post(API_URL + '/sign-up', user);
+    // return this.http.post(API_URL + '/sign-up', user);
+    return this.http.post(`${API_URL}/sign-up`, user);
   }
 
   logOut() {
