@@ -18,24 +18,23 @@ export class RegisterComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
-    if(this.authenticationService.currentUserValue?.id){
-      this.router.navigateByUrl("/profile");
+    if (this.authenticationService.currentUserValue?.id) {
+      this.router.navigate(['/profile']);
       return;
     }
   }
 
-  register(){
-    this.authenticationService.register(this.user).subscribe(data =>{
-      this.router.navigateByUrl("/login");
-    },
-     err =>{
-       if(err?.status === 409){
-         this.errorMessage = 'Username already exist.';
-       } else {
-         this.errorMessage = 'Unexpected error occurred.';
-         console.log(err);
-       }
-     })
+  register() {
+    this.authenticationService.register(this.user).subscribe(data => {
+      this.router.navigate(['/login']);
+    }, err => {
+      if (err?.status === 409) {
+        this.errorMessage = 'Username already exist.';
+      } else {
+        this.errorMessage = 'Unexpected error occurred.';
+        console.log(err);
+      }
+    })
   }
 
 

@@ -1,12 +1,14 @@
 import { User } from './../model/user';
-import { environment } from './../../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {map} from "rxjs/operators";
+import { environment } from 'src/environments/environment';
 
 
-const API_URL = environment.BASE_URL + '/api/authentication'
+
+const API_URL = `${environment.BASE_URL}/api/authentication`;
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,22 +16,21 @@ const API_URL = environment.BASE_URL + '/api/authentication'
 export class AuthenticationService {
 
   public currentUser: Observable<User>;
-  private currentUserSubject: BehaviorSubject<User>;
+  private currenUserSubject: BehaviorSubject<User>;
 
   constructor(private http: HttpClient) {
     let storageUser;
     const storageUserAsStr = localStorage.getItem('currentUser');
-    if(storageUserAsStr){
-      storageUser = JSON.parse(storageUserAsStr);   // convert json into object
+    if (storageUserAsStr) {
+      storageUser = JSON.parse(storageUserAsStr);
     }
 
-    this.currentUserSubject = new BehaviorSubject<User>(storageUser);
-    this.currentUser = this.currentUserSubject.asObservable();
+    this.currenUserSubject = new BehaviorSubject<User>(storageUser);
+    this.currentUser = this.currenUserSubject.asObservable();
   }
 
-
   public get currentUserValue(): User {
-    return this.currentUserSubject.value;
+    return this.currenUserSubject.value;
   }
 
   login(user: User): Observable<any> {
@@ -37,7 +38,7 @@ export class AuthenticationService {
       map(response => {
         if (response) {
           localStorage.setItem('currentUser', JSON.stringify(response));
-          this.currentUserSubject.next(response);
+          this.currenUserSubject.next(response);
         }
         return response;
       })
@@ -51,7 +52,7 @@ export class AuthenticationService {
 
   logOut() {
     localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(new User);
+    this.currenUserSubject.next(new User);
   }
 
 
