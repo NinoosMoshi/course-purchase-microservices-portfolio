@@ -1,3 +1,5 @@
+import { Role } from './model/role';
+import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -9,11 +11,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+
   {path:'home', component:HomeComponent},
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
-  {path:'profile', component:ProfileComponent},
-  {path:'admin', component:AdminComponent},
+
+  {path:'profile', component:ProfileComponent, canActivate: [AuthGuard], data: {roles: [Role.ADMIN,Role.USER]}},
+  {path:'admin', component:AdminComponent, canActivate: [AuthGuard], data: {roles: [Role.ADMIN]}},
+
   {path:'404', component:NotFoundComponent},
   {path:'401', component:UnauthorizedComponent},
   {path:'', redirectTo: '/home', pathMatch: 'full'},
