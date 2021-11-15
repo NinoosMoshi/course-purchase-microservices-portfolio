@@ -1,5 +1,6 @@
+import { CourseSaveComponent } from './../course-save/course-save.component';
 import { CourseService } from './../../services/course.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Course } from 'src/app/model/course';
 
 @Component({
@@ -11,6 +12,8 @@ export class AdminComponent implements OnInit {
 
   courseList: Array<Course> = [];
 
+  @ViewChild(CourseSaveComponent) saveComponent: CourseSaveComponent | undefined;
+
   constructor(private courseService: CourseService) { }
 
   ngOnInit(): void {
@@ -18,5 +21,13 @@ export class AdminComponent implements OnInit {
       this.courseList = data;
     })
   }
+
+
+  createCourseRequest(){
+    this.saveComponent?.showCourseModal();
+  }
+
+
+
 
 }

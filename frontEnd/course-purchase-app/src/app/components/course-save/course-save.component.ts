@@ -2,6 +2,8 @@ import { CourseService } from './../../services/course.service';
 import { Course } from './../../model/course';
 import { Component, OnInit } from '@angular/core';
 
+declare var $:any;
+
 @Component({
   selector: 'app-course-save',
   templateUrl: './course-save.component.html',
@@ -25,5 +27,12 @@ export class CourseSaveComponent implements OnInit {
       console.log(err)
     });
   }
+
+
+   showCourseModal(){
+     $('#courseModal').modal('show');
+   }
+
+
 
 }
