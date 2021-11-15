@@ -1,4 +1,6 @@
+import { CourseService } from './../../services/course.service';
 import { Component, OnInit } from '@angular/core';
+import { Course } from 'src/app/model/course';
 
 @Component({
   selector: 'app-admin',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  courseList: Array<Course> = [];
+
+  constructor(private courseService: CourseService) { }
 
   ngOnInit(): void {
+    this.courseService.getAllCourses().subscribe(data =>{
+      this.courseList = data;
+    })
   }
 
 }

@@ -9,6 +9,7 @@ import { RequestBaseService } from './request-base.service';
 
 const API_URL = environment.BASE_URL + '/gateway/course';
 
+
 @Injectable({
   providedIn: 'root'
 })
