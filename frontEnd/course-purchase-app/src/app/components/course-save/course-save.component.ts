@@ -19,12 +19,14 @@ export class CourseSaveComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveCourse(){
-    this.courseService.saveCourse(this.course).subscribe(data=>{
+  saveCourse() {
+    this.courseService.saveCourse(this.course).subscribe(data => {
 
-    }, err =>{
-      this.errorMessage = "Unexpected error occurred."
-      console.log(err)
+      $('#courseModal').modal('hide');
+
+    }, err => {
+      this.errorMessage = 'Unexpected error occurred.';
+      console.log(err);
     });
   }
 
