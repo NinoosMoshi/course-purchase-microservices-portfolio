@@ -29,5 +29,9 @@ export class AdminComponent implements OnInit {
 
 
 
+  saveCourseWatcher(course: Course){
+    this.courseList.push(course);
+  }
+
 
 }

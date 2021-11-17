@@ -1,6 +1,9 @@
 import { CourseService } from './../../services/course.service';
 import { Course } from './../../model/course';
-import { Component, OnInit } from '@angular/core';
+import { Component,EventEmitter, OnInit, Output } from '@angular/core';
+
+
+
 
 declare var $:any;
 
@@ -14,6 +17,8 @@ export class CourseSaveComponent implements OnInit {
   course: Course = new Course();
   errorMessage: string = "";
 
+  @Output() save = new EventEmitter<any>();
+
   constructor(private courseService: CourseService) { }
 
   ngOnInit(): void {
@@ -21,7 +26,7 @@ export class CourseSaveComponent implements OnInit {
 
   saveCourse() {
     this.courseService.saveCourse(this.course).subscribe(data => {
-
+      this.save.emit(data);
       $('#courseModal').modal('hide');
 
     }, err => {
