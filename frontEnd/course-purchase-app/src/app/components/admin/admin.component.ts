@@ -11,6 +11,7 @@ import { Course } from 'src/app/model/course';
 export class AdminComponent implements OnInit {
 
   courseList: Array<Course> = [];
+  selectedCourse: Course = new Course();
 
   @ViewChild(CourseSaveComponent) saveComponent: CourseSaveComponent | undefined;
 
@@ -24,13 +25,27 @@ export class AdminComponent implements OnInit {
 
 
   createCourseRequest(){
+    this.selectedCourse = new Course();
     this.saveComponent?.showCourseModal();
+  }
+
+
+  editCourseRequest(item: Course){
+     this.selectedCourse = Object.assign({}, item);
+     this.saveComponent?.showCourseModal();
   }
 
 
 
   saveCourseWatcher(course: Course){
-    this.courseList.push(course);
+    let itemIndex = this.courseList.findIndex(item => item.id === course.id);
+
+    if(itemIndex !== -1){  // if course item is exists
+      this.courseList[itemIndex] = course;  // then it's edit
+    }else{
+      this.courseList.push(course);   // else it's create
+    }
+
   }
 
 
