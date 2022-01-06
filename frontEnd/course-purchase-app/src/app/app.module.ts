@@ -1,3 +1,4 @@
+import { authInterceptorProviders } from './interceptors/auth.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -36,7 +37,7 @@ import { CourseDeleteComponent } from './components/course-delete/course-delete.
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
